@@ -122,7 +122,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     {
         entity.itemHandler.extractItem(0, 2, false);
 
-        entity.itemHandler.setStackInSlot(1, new ItemStack(MachinaItems.POLISHED_STONES.get(), entity.itemHandler.getStackInSlot(2).getCount() + 2));
+        entity.itemHandler.setStackInSlot(1, new ItemStack(MachinaItems.POLISHED_STONES.get(), entity.itemHandler.getStackInSlot(1).getCount() + 2));
     }
 
     private static boolean checkRecipe(RockTumblerBlockEntity entity)

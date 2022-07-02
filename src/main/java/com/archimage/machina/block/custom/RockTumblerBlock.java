@@ -94,8 +94,9 @@ public class RockTumblerBlock extends BaseEntityBlock
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return null;
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
+    {
+        return new RockTumblerBlockEntity(pPos, pState);
     }
 
     @Override
@@ -104,7 +105,6 @@ public class RockTumblerBlock extends BaseEntityBlock
         if (!pLevel.isClientSide())
         {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            System.out.println(entity);
             if (entity instanceof RockTumblerBlockEntity)
             {
                 NetworkHooks.openGui(((ServerPlayer)pPlayer), (RockTumblerBlockEntity)entity, pPos);

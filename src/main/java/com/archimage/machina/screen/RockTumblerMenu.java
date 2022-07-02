@@ -37,8 +37,8 @@ public class RockTumblerMenu extends AbstractContainerMenu
         addPlayerHotbar(inventory);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 45, 30));
-            this.addSlot(new MachinaOutputSlot(handler, 1, 111, 30));
+            this.addSlot(new SlotItemHandler(handler, 0, 50, 35));
+            this.addSlot(new MachinaOutputSlot(handler, 1, 116, 35));
         });
     }
 
@@ -100,7 +100,7 @@ public class RockTumblerMenu extends AbstractContainerMenu
     {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
@@ -108,7 +108,7 @@ public class RockTumblerMenu extends AbstractContainerMenu
     private void addPlayerHotbar(Inventory playerInventory)
     {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }
