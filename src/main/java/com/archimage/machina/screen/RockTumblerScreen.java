@@ -29,6 +29,11 @@ public class RockTumblerScreen extends AbstractContainerScreen<RockTumblerMenu>
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+
+        if(menu.isCrafting())
+        {
+            blit(pPoseStack, x + 80, y + 35, 176, 0, menu.getScaledProgress(), 16);
+        }
     }
 
     @Override

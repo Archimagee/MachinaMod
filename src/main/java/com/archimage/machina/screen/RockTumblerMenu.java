@@ -3,12 +3,11 @@ package com.archimage.machina.screen;
 import com.archimage.machina.block.MachinaBlocks;
 import com.archimage.machina.block.entity.custom.RockTumblerBlockEntity;
 import com.archimage.machina.screen.slot.MachinaOutputSlot;
+import com.mojang.serialization.Decoder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,18 +19,21 @@ public class RockTumblerMenu extends AbstractContainerMenu
 
     private final RockTumblerBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
 
-    public RockTumblerMenu(int pContainerId, Inventory inventory, FriendlyByteBuf extraData)
+    public RockTumblerMenu(int pContainerId, Inventory inventory, FriendlyByteBuf extraData, ContainerData data)
     {
-        this(pContainerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public RockTumblerMenu(int pContainerId, Inventory inventory, BlockEntity entity)
+    public RockTumblerMenu(int pContainerId, Inventory inventory, BlockEntity entity, ContainerData data)
     {
         super(MachinaMenuTypes.ROCK_TUMBLER_MENU.get(), pContainerId);
         checkContainerSize(inventory, 2);
         blockEntity = ((RockTumblerBlockEntity) entity);
+
         this.level = inventory.player.level;
+        this.data = data;
 
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
@@ -40,6 +42,20 @@ public class RockTumblerMenu extends AbstractContainerMenu
             this.addSlot(new SlotItemHandler(handler, 0, 50, 35));
             this.addSlot(new MachinaOutputSlot(handler, 1, 116, 35));
         });
+
+        addDataSlots(data);
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int arrowSize = 22; // This is the height in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * arrowSize / maxProgress : 0;
     }
 
 

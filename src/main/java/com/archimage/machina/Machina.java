@@ -3,6 +3,7 @@ package com.archimage.machina;
 import com.archimage.machina.block.MachinaBlocks;
 import com.archimage.machina.block.entity.MachinaBlockEntities;
 import com.archimage.machina.item.MachinaItems;
+import com.archimage.machina.recipe.MachinaRecipes;
 import com.archimage.machina.screen.MachinaMenuTypes;
 import com.archimage.machina.screen.RockTumblerScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -32,6 +33,7 @@ public class Machina
         MachinaBlocks.register(eventBus);
         MachinaBlockEntities.register(eventBus);
         MachinaMenuTypes.register(eventBus);
+        MachinaRecipes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

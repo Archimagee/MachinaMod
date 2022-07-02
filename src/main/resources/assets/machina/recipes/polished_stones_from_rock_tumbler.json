@@ -1,0 +1,11 @@
+{
+  "type": "machina:rock_tumbling",
+  "ingredients": [
+    {
+      "item": "machina:loose_stones"
+    }
+  ],
+  "output": {
+    "item": "machina:polished_stones"
+  }
+}
