@@ -21,7 +21,7 @@ public class RockTumblerMenu extends AbstractContainerMenu
     private final Level level;
     private final ContainerData data;
 
-    public RockTumblerMenu(int pContainerId, Inventory inventory, FriendlyByteBuf extraData, ContainerData data)
+    public RockTumblerMenu(int pContainerId, Inventory inventory, FriendlyByteBuf extraData)
     {
         this(pContainerId, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
