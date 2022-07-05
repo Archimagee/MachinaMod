@@ -27,11 +27,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.Random;
 
 public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
 {
@@ -151,6 +151,8 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     {
         if(hasRecipe(pBlockEntity))
         {
+            System.out.println("TICKED");
+            System.out.println(hasRecipe(pBlockEntity));
             pBlockEntity.currentProgress++;
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.currentProgress > pBlockEntity.completeAtProgress)
@@ -173,6 +175,10 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
+        System.out.println(RockTumblerRecipe.Type.INSTANCE);
+        System.out.println(inventory);
+        System.out.println(level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level));
+
         Optional<RockTumblerRecipe> match = level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory) && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
@@ -186,8 +192,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<RockTumblerRecipe> match = level.getRecipeManager()
-                .getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level);
+        Optional<RockTumblerRecipe> match = level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent())
         {

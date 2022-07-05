@@ -125,7 +125,7 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
+        private static <G>Class<G> castClass(Class<?> cls) {
             return (Class<G>)cls;
         }
     }
