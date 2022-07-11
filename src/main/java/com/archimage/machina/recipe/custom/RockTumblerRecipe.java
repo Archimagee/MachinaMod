@@ -113,7 +113,8 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
         public void toNetwork(FriendlyByteBuf buf, RockTumblerRecipe recipe)
         {
             buf.writeInt(recipe.getIngredients().size());
-            for (Ingredient ing : recipe.getIngredients()) {
+            for (Ingredient ing : recipe.getIngredients())
+            {
                 ing.toNetwork(buf);
             }
             buf.writeItemStack(recipe.getResultItem(), false);
@@ -139,7 +140,7 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G>Class<G> castClass(Class<?> cls)
+        private static <G> Class<G> castClass(Class<?> cls)
         {
             return (Class<G>)cls;
         }

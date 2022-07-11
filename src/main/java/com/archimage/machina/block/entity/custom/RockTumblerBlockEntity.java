@@ -148,8 +148,6 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     {
         if(hasRecipe(pBlockEntity))
         {
-            System.out.println("TICKED");
-            System.out.println(hasRecipe(pBlockEntity));
             pBlockEntity.currentProgress++;
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.currentProgress > pBlockEntity.completeAtProgress)
@@ -172,9 +170,9 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        System.out.println(RockTumblerRecipe.Type.INSTANCE);
-        System.out.println(inventory);
-        System.out.println(level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level));
+
+        System.out.println(level.getRecipeManager().getAllRecipesFor(RockTumblerRecipe.Type.INSTANCE));
+
 
         Optional<RockTumblerRecipe> match = level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level);
 
