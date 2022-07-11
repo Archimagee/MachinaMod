@@ -1,9 +1,7 @@
 package com.archimage.machina.block.entity.custom;
 
-import com.archimage.machina.block.custom.RockTumblerBlock;
 import com.archimage.machina.block.entity.MachinaBlockEntities;
-import com.archimage.machina.item.MachinaItems;
-import com.archimage.machina.recipe.RockTumblerRecipe;
+import com.archimage.machina.recipe.custom.RockTumblerRecipe;
 import com.archimage.machina.screen.RockTumblerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +25,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

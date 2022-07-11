@@ -1,4 +1,4 @@
-package com.archimage.machina.recipe;
+package com.archimage.machina.recipe.custom;
 
 import com.archimage.machina.Machina;
 import com.google.gson.JsonArray;
@@ -28,54 +28,63 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
     }
 
     @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+    public boolean matches(SimpleContainer pContainer, Level pLevel)
+    {
         return recipeItems.get(0).test(pContainer.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public ItemStack assemble(SimpleContainer pContainer)
+    {
         return output;
     }
 
     @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
+    public boolean canCraftInDimensions(int pWidth, int pHeight)
+    {
         return true;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem()
+    {
         return output.copy();
     }
 
     @Override
-    public ResourceLocation getId() {
+    public ResourceLocation getId()
+    {
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer()
+    {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public RecipeType<?> getType()
+    {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<RockTumblerRecipe> {
+    public static class Type implements RecipeType<RockTumblerRecipe>
+    {
         private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "rock_tumbling";
     }
 
-    public static class Serializer implements RecipeSerializer<RockTumblerRecipe> {
+    public static class Serializer implements RecipeSerializer<RockTumblerRecipe>
+    {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(Machina.MOD_ID,"rock_tumbling");
+        public static final ResourceLocation ID = new ResourceLocation(Machina.MOD_ID,"rock_tumbling");
 
         @Override
-        public RockTumblerRecipe fromJson(ResourceLocation id, JsonObject json) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
+        public RockTumblerRecipe fromJson(ResourceLocation id, JsonObject json)
+        {
+            ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
@@ -84,11 +93,12 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new RockTumblerRecipe(id, output, inputs);
+            return new RockTumblerRecipe(id, result, inputs);
         }
 
         @Override
-        public RockTumblerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public RockTumblerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf)
+        {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -100,7 +110,8 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, RockTumblerRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, RockTumblerRecipe recipe)
+        {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
@@ -109,23 +120,27 @@ public class RockTumblerRecipe implements Recipe<SimpleContainer>
         }
 
         @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
+        public RecipeSerializer<?> setRegistryName(ResourceLocation name)
+        {
             return INSTANCE;
         }
 
         @Nullable
         @Override
-        public ResourceLocation getRegistryName() {
+        public ResourceLocation getRegistryName()
+        {
             return ID;
         }
 
         @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
+        public Class<RecipeSerializer<?>> getRegistryType()
+        {
             return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G>Class<G> castClass(Class<?> cls) {
+        private static <G>Class<G> castClass(Class<?> cls)
+        {
             return (Class<G>)cls;
         }
     }
