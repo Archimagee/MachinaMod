@@ -12,11 +12,13 @@ public class MachinaItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Machina.MOD_ID);
 
-    public static final RegistryObject<Item> LOOSE_STONES=
+    public static final RegistryObject<Item> LOOSE_STONES =
             ITEMS.register("loose_stones", () -> new Item(new Item.Properties().tab(MachinaCreativeModeTab.MACHINA_CREATIVE_TAB)));
-
-    public static final RegistryObject<Item> POLISHED_STONES=
+    public static final RegistryObject<Item> POLISHED_STONES =
             ITEMS.register("polished_stones", () -> new Item(new Item.Properties().tab(MachinaCreativeModeTab.MACHINA_CREATIVE_TAB)));
+
+    public static final RegistryObject<Item> MORTAR_AND_PESTLE =
+            ITEMS.register("mortar_and_pestle", () -> new Item(new Item.Properties().tab(MachinaCreativeModeTab.MACHINA_CREATIVE_TAB)));
 
     public static void register(IEventBus eventBus)
     {

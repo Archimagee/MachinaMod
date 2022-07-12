@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  &",
+    " % ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bowl"
+    },
+    "%": {
+      "item": "machina:loose_stones"
+    },
+    "&": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "machina:mortar_and_pestle"
+  }
+}
