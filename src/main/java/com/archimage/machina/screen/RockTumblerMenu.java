@@ -46,14 +46,16 @@ public class RockTumblerMenu extends AbstractContainerMenu
         addDataSlots(data);
     }
 
-    public boolean isCrafting() {
+    public boolean isCrafting()
+    {
         return data.get(0) > 0;
     }
 
-    public int getScaledProgress() {
+    public int getScaledProgress()
+    {
         int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);  // Max Progress
-        int arrowSize = 22; // This is the height in pixels of your arrow
+        int maxProgress = this.data.get(1);
+        int arrowSize = 22;
 
         return maxProgress != 0 && progress != 0 ? progress * arrowSize / maxProgress : 0;
     }

@@ -35,7 +35,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
 
     protected final ContainerData data;
     private int currentProgress = 0;
-    private int completeAtProgress = 72;
+    private int completeAtProgress = 150;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(2)
     {
@@ -166,13 +166,10 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++)
+        {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
-
-
-        System.out.println(level.getRecipeManager().getAllRecipesFor(RockTumblerRecipe.Type.INSTANCE));
-
 
         Optional<RockTumblerRecipe> match = level.getRecipeManager().getRecipeFor(RockTumblerRecipe.Type.INSTANCE, inventory, level);
 

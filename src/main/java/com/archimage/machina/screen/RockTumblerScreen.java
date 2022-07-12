@@ -11,8 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class RockTumblerScreen extends AbstractContainerScreen<RockTumblerMenu>
 {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(Machina.MOD_ID, "textures/gui/rock_tumbler_gui.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Machina.MOD_ID, "textures/gui/rock_tumbler_gui.png");
 
     public RockTumblerScreen(RockTumblerMenu pMenu, Inventory pPlayerInventory, Component pTitle)
     {
