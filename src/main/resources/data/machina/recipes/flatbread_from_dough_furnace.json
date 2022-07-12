@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient":
+  {
+    "item": "machina:dough"
+  },
+
+  "result": "machina:flatbread",
+  "experience": 0.1,
+  "cookingtime": 500
+}

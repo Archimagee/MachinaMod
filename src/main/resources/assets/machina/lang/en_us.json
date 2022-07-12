@@ -1,6 +1,11 @@
 {
   "item.machina.loose_stones" : "Loose Stones",
   "item.machina.polished_stones" : "Polished Stones",
+
+  "item.machina.wheat_grain" : "Wheat Grain",
+  "item.machina.flour" : "Flour",
+  "item.machina.dough" : "Dough",
+  "item.machina.flatbread" : "Flatbread",
   "item.machina.mortar_and_pestle" : "Mortar and Pestle",
 
   "block.machina.rock_tumbler_block" : "Rock Tumbler",

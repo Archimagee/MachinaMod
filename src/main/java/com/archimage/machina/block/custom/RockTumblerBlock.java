@@ -24,8 +24,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Properties;
-
 public class RockTumblerBlock extends BaseEntityBlock
 {
 
