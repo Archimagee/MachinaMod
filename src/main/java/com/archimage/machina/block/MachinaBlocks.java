@@ -20,9 +20,8 @@ public class MachinaBlocks
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Machina.MOD_ID);
 
-    public static final RegistryObject<Block> ROCK_TUMBLER_BLOCK = registerBlock("rock_tumbler_block",
-            () -> new RockTumblerBlock(BlockBehaviour.Properties.of(Material.METAL)),
-            MachinaCreativeModeTab.MACHINA_CREATIVE_TAB);
+    public static final RegistryObject<Block> ROCK_TUMBLER_BLOCK =
+            registerBlock("rock_tumbler_block", () -> new RockTumblerBlock(BlockBehaviour.Properties.of(Material.METAL)), MachinaCreativeModeTab.MACHINA_CREATIVE_TAB);
 
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block)
@@ -54,7 +53,8 @@ public class MachinaBlocks
                 new Item.Properties().tab(tab)));
     }
 
-    public static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus)
+    {
         BLOCKS.register(eventBus);
     }
 }

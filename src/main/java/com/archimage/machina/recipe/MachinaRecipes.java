@@ -2,6 +2,7 @@ package com.archimage.machina.recipe;
 
 import com.archimage.machina.Machina;
 import com.archimage.machina.recipe.custom.RockTumblerRecipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +17,8 @@ public class MachinaRecipes
     public static final RegistryObject<RecipeSerializer<RockTumblerRecipe>> ROCK_TUMBLING_SERIALIZER =
             SERIALIZERS.register("rock_tumbling", () -> RockTumblerRecipe.Serializer.INSTANCE);
 
-    public static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus)
+    {
         SERIALIZERS.register(eventBus);
     }
 }

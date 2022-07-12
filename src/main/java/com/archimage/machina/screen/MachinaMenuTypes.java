@@ -18,13 +18,13 @@ public class MachinaMenuTypes
     public static final RegistryObject<MenuType<RockTumblerMenu>> ROCK_TUMBLER_MENU =
             registerMenuType(RockTumblerMenu::new, "rock_tumbler_menu");
 
-
-
-    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
+    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name)
+    {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }
 
-    public static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus)
+    {
         MENUS.register(eventBus);
     }
 }
