@@ -35,7 +35,10 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
 
     protected final ContainerData data;
     private int currentProgress = 0;
-    private int completeAtProgress = 150;
+    private int completeAtProgress = 300;
+
+    public boolean hasRecipe = false;
+    public boolean recipeCheckedFor = false;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(2)
     {
@@ -43,6 +46,11 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
         protected void onContentsChanged(int slot)
         {
             setChanged();
+            if(slot == 0)
+            {
+                hasRecipe = false;
+                recipeCheckedFor = false;
+            }
         }
     };
 
@@ -80,6 +88,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     @Override
+    @NotNull
     public Component getDisplayName()
     {
         return new TextComponent("Rock Tumbler");
@@ -87,7 +96,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer)
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer)
     {
         return new RockTumblerMenu(pContainerId, pInventory, this, this.data);
     }
@@ -126,7 +135,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     @Override
-    public void load(CompoundTag nbt)
+    public void load(@NotNull CompoundTag nbt)
     {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
@@ -146,13 +155,22 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RockTumblerBlockEntity pBlockEntity)
     {
-        if(hasRecipe(pBlockEntity))
+        if(!pBlockEntity.recipeCheckedFor)
         {
-            pBlockEntity.currentProgress++;
-            setChanged(pLevel, pPos, pState);
-            if(pBlockEntity.currentProgress > pBlockEntity.completeAtProgress)
+            pBlockEntity.hasRecipe = checkForRecipe(pBlockEntity);
+            pBlockEntity.recipeCheckedFor = true;
+        }
+
+        if(pBlockEntity.hasRecipe)
+        {
+            if(pBlockEntity.currentProgress == pBlockEntity.completeAtProgress)
             {
                 craft(pBlockEntity);
+            }
+            else
+            {
+                pBlockEntity.currentProgress++;
+                setChanged(pLevel, pPos, pState);
             }
         }
         else
@@ -162,7 +180,7 @@ public class RockTumblerBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
-    private static boolean hasRecipe(RockTumblerBlockEntity entity)
+    private static boolean checkForRecipe(RockTumblerBlockEntity entity)
     {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
